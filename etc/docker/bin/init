@@ -1,5 +1,12 @@
 #!/bin/bash
 
 docker-compose run php bin/console cache:clear
-docker-compose run php bin/console doctrine:migrations:migrate --no-interaction
-docker-compose run php bin/console h:d:f:l --no-interaction
+
+docker-compose run php bin/console sulu:build dev --destroy --no-interaction
+
+docker-compose run php bin/console sulu:translate:import en
+docker-compose run php bin/console sulu:translate:import de
+docker-compose run php bin/console sulu:translate:import fr
+docker-compose run php bin/console sulu:translate:export en
+docker-compose run php bin/console sulu:translate:export de
+docker-compose run php bin/console sulu:translate:export fr

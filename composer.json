@@ -1,37 +1,58 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "sulu/sulu-standard",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The \"Sulu Standard Edition\" distribution",
+    "version": "dev-develop",
     "autoload": {
         "psr-4": { "": "src/" },
-        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+        "classmap": [
+            "app/KernelManager.php",
+            "app/AppKernel.php",
+            "app/AdminKernel.php",
+            "app/WebsiteKernel.php",
+            "app/AppCache.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": { "Tests\\": "tests/" }
     },
     "require": {
         "php": ">=5.5.9",
-        "symfony/symfony": "2.8.*",
-        "doctrine/orm": "^2.4.8",
-        "doctrine/doctrine-bundle": "^1.4",
-        "symfony/swiftmailer-bundle": "^2.3",
         "symfony/monolog-bundle": "^2.4",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "lexik/maintenance-bundle": "^2.0",
-        "liip/monitor-bundle": "^2.3"
+        "liip/monitor-bundle": "^2.3",
+        "twig/extensions": "~1.0",
+        "sulu/sulu": "dev-develop",
+        "symfony-cmf/core-bundle": "1.2.*",
+        "dantleech/phpcr-migrations-bundle": "0.1.*",
+
+        "sulu/document-manager": "@dev",
+        "massive/search-bundle": "@dev",
+
+        "nelmio/alice": "~1.7",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+
+        "zendframework/zend-stdlib": "~2.3",
+        "zendframework/zendsearch": "@dev",
+
+        "massive/build-bundle": "0.2.*",
+
+        "jackalope/jackalope-doctrine-dbal": "~1.2.0",
+        "jackalope/jackalope-jackrabbit": "~1.2.0",
+        "doctrine/doctrine-cache-bundle": "~1.0",
+        "oro/doctrine-extensions": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "doctrine/doctrine-fixtures-bundle": "^2.3",
         "theofidry/psysh-bundle": "^2.0",
-        "liip/functional-test-bundle": "^1.5",
-        "hautelook/alice-bundle": "^1.2",
         "symfony/phpunit-bridge": "^3.0",
-        "halleck45/phpmetrics-collector-bundle": "^0.0.1"
+        "halleck45/phpmetrics-collector-bundle": "^0.0.1",
+        "phpcr/phpcr-shell": "@beta"
     },
     "scripts": {
         "post-install-cmd": [
@@ -40,7 +61,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "Sulu\\Bundle\\MediaBundle\\Composer\\MediaScriptHandler::initBundle"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -48,7 +70,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "Sulu\\Bundle\\MediaBundle\\Composer\\MediaScriptHandler::initBundle"
         ]
     },
     "config": {
@@ -63,9 +86,11 @@
         "symfony-web-dir": "web",
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
-        },
+        "incenteev-parameters": [
+            {"file": "app/config/parameters.yml"},
+            {"file": "app/config/phpcr.yml"},
+            {"file": "app/config/widgets.yml", "parameter-key": "sulu_admin"}
+        ],
         "branch-alias": {
             "dev-master": "2.8-dev"
         }

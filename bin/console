@@ -3,6 +3,8 @@
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Debug\Debug;
 
 // if you don't want to setup permissions the proper way, just uncomment the following PHP line
@@ -25,6 +27,11 @@ if ($debug) {
     Debug::enable();
 }
 
-$kernel = new AppKernel($env, $debug);
+$kernelManager = new KernelManager($env, $debug);
+
+$contextOption = new InputOption('context', 'c', InputOption::VALUE_REQUIRED, 'Sulu context option (admin/website)', AdminKernel::CONTEXT);
+
+$kernel = $kernelManager->createConsoleKernel($input);
 $application = new Application($kernel);
+$application->getDefinition()->addOption($contextOption);
 $application->run($input);
