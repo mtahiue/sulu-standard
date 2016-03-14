@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
-    - { resource: services.yml }
+    - { resource: sulu.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -10,10 +9,10 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource: "%kernel.root_dir%/config/%sulu.context%/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
@@ -27,7 +26,7 @@ framework:
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
-        save_path:   "%kernel.storage_dir%/var/sessions/%kernel.environment%"
+        save_path:   "%kernel.storage_dir%/var/sessions/%sulu.context%/%kernel.environment%"
     fragments:       ~
     http_method_override: true
     assets: ~
@@ -67,13 +66,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Doctrine Migrations Configuration
-doctrine_migrations:
-    dir_name: "%kernel.root_dir%/migrations"
-    namespace: Application\Migrations
-    table_name: migration_versions
-    name: Application Migrations
-
 # Lexik Maintenance Configuration
 lexik_maintenance:
     authorized:
@@ -88,3 +80,9 @@ liip_monitor:
     checks:
         security_advisory:
             lock_file: '%kernel.root_dir%/../composer.lock'
+
+# Liip Theme Configuration
+liip_theme:
+    themes: ["default"]
+    active_theme: "default"
+    load_controllers: false

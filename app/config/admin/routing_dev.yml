@@ -1,0 +1,6 @@
+_dev:
+    resource: ../routing_dev.yml
+    prefix: /admin
+
+_main:
+    resource: routing.yml

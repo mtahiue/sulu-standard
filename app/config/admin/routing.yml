@@ -1,0 +1,8 @@
+_admin:
+    resource: routing/admin.yml
+    prefix: /admin
+
+# for preview
+client_website:
+    type: portal
+    resource: "@ClientWebsiteBundle/Resources/config/routing.yml"
