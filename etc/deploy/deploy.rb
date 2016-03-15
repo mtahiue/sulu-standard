@@ -23,7 +23,8 @@ set :linked_files, ["app/config/parameters.yml"]
 set :linked_dirs, [
     fetch(:log_path),
     fetch(:session_path),
-    fetch(:web_path) + "/uploads"
+    fetch(:web_path) + "/uploads",
+    fetch(:var_path) + "/search_data"
 ]
 
 
