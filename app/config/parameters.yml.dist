@@ -18,6 +18,8 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
+    maintenance_ips:   [ 127.0.0.1 ]
+
     sulu_admin.name:    Sulu
     sulu_admin.email:   ~
 
