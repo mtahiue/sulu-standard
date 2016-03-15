@@ -19,7 +19,7 @@ set :banner_options, {
 
 
 # Shared content
-set :linked_files, ["app/config/parameters.yml"]
+set :linked_files, ["app/config/parameters.yml", "app/config/phpcr.yml", "app/config/widgets.yml"]
 set :linked_dirs, [
     fetch(:log_path),
     fetch(:session_path),
