@@ -26,6 +26,11 @@ set :linked_dirs, [
     fetch(:web_path) + "/uploads",
     fetch(:var_path) + "/search_data"
 ]
+set :copy_files, [
+    "bower_components/",
+    "node_modules/",
+    "vendor/"
+]
 
 
 # Deploy hooks
