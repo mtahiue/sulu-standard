@@ -29,7 +29,7 @@
 /bower_components/
 /node_modules/
 /npm-debug.log
-/src/AppBundle/Resources/public/
+/src/Client/Bundle/WebsiteBundle/Resources/public/
 
 # Favicons
 /app/Resources/views/favicons.html.twig

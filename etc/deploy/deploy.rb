@@ -39,7 +39,7 @@ namespace :deploy do
     after :updated, "symfony:assets:install"
 end
 
-#before "symfony:assets:install", "gulp"
+before "symfony:assets:install", "gulp"
 
 
 # System settings
