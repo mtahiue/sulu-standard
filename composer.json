@@ -71,7 +71,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "Sulu\\Bundle\\MediaBundle\\Composer\\MediaScriptHandler::initBundle"
+            "MediaScriptHandler::initBundle"
         ]
     },
     "config": {
