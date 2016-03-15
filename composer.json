@@ -92,7 +92,7 @@
             {"file": "app/config/widgets.yml", "parameter-key": "sulu_admin"}
         ],
         "branch-alias": {
-            "dev-master": "2.8-dev"
+            "dev-master": "1.2-dev"
         }
     }
 }
