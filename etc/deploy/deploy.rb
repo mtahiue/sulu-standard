@@ -1,5 +1,5 @@
 set :application, "sulu"
-set :repo_url, "git@github.com:sulu/#{fetch(:application)}.git"
+set :repo_url, "git@github.com:webplates/sulu-standard.git"
 set :branch, ENV["BRANCH"] || "master"
 
 
