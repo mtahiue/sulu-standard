@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8fd029313ef4cbb5492e514bcad9905b",
-    "content-hash": "ac9b0ab792f427e763e094c09e850555",
+    "hash": "6699689ce91251073a7fd482b3b52c98",
+    "content-hash": "ec50ac1ab2397cebd40b010e3438627a",
     "packages": [
         {
             "name": "aferrandini/urlizer",
@@ -1107,16 +1107,16 @@
         },
         {
             "name": "doctrine/migrations",
-            "version": "v1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "abc571dadd45df42f19baac7a0a1a371216dd93d"
+                "reference": "0d0ff5da10c5d30846da32060bd9e357abf70a05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/abc571dadd45df42f19baac7a0a1a371216dd93d",
-                "reference": "abc571dadd45df42f19baac7a0a1a371216dd93d",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/0d0ff5da10c5d30846da32060bd9e357abf70a05",
+                "reference": "0d0ff5da10c5d30846da32060bd9e357abf70a05",
                 "shasum": ""
             },
             "require": {
@@ -1176,7 +1176,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2016-02-23 15:28:39"
+            "time": "2016-03-14 12:29:11"
         },
         {
             "name": "doctrine/orm",
@@ -3724,16 +3724,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.4",
+            "version": "v5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "2c167426fc24f9de116345195bc1697a748ee847"
+                "reference": "3a160355bb1364da55ed9e415c1aa1fa8d457b6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/2c167426fc24f9de116345195bc1697a748ee847",
-                "reference": "2c167426fc24f9de116345195bc1697a748ee847",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/3a160355bb1364da55ed9e415c1aa1fa8d457b6f",
+                "reference": "3a160355bb1364da55ed9e415c1aa1fa8d457b6f",
                 "shasum": ""
             },
             "require": {
@@ -3772,7 +3772,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-02-12 16:21:30"
+            "time": "2016-03-15 16:21:41"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3995,12 +3995,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sulu-io/sulu.git",
-                "reference": "c9ff1bbfa3c7b3b7c33b9c2ce7b43ac7d251eb42"
+                "reference": "4017651ab40e9f67fad4edf7f30923ea4af45353"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sulu-io/sulu/zipball/c9ff1bbfa3c7b3b7c33b9c2ce7b43ac7d251eb42",
-                "reference": "c9ff1bbfa3c7b3b7c33b9c2ce7b43ac7d251eb42",
+                "url": "https://api.github.com/repos/sulu-io/sulu/zipball/4017651ab40e9f67fad4edf7f30923ea4af45353",
+                "reference": "4017651ab40e9f67fad4edf7f30923ea4af45353",
                 "shasum": ""
             },
             "require": {
@@ -4016,7 +4016,7 @@
                 "massive/search-bundle": "dev-develop",
                 "oro/doctrine-extensions": "^1.0",
                 "pagerfanta/pagerfanta": "~1.0",
-                "php": ">=5.5",
+                "php": "^5.5 || ^7.0",
                 "pulse00/ffmpeg-bundle": "^0.6",
                 "sensio/framework-extra-bundle": "3.0.*",
                 "stof/doctrine-extensions-bundle": "1.1.*",
@@ -4092,7 +4092,7 @@
                 "core",
                 "sulu"
             ],
-            "time": "2016-03-14 08:34:56"
+            "time": "2016-03-17 13:34:13"
         },
         {
             "name": "swiftmailer/swiftmailer",
