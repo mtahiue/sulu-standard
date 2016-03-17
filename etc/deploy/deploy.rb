@@ -1,5 +1,5 @@
-set :application, "symfony"
-set :repo_url, "git@github.com:symfony/#{fetch(:application)}.git"
+set :application, "sulu"
+set :repo_url, "git@github.com:sulu/#{fetch(:application)}.git"
 set :branch, ENV["BRANCH"] || "master"
 
 
