@@ -1,4 +1,4 @@
-server "staging.sulu.webplates.xyz", user: "webplates", roles: [:app, :web, :db]
+server "staging.sulu.webplates.xyz", user: "webplates", roles: [:app, :db, :web]
 
 after "deploy:updated", :build do
     invoke "symfony:console", "sulu:build", "prod --no-interaction"
