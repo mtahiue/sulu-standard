@@ -61,8 +61,8 @@
             <environments>
                 <environment type="prod">
                     <urls>
-                        <url language="en">en.sulu.webplates.xyz</url>
-                        <url language="de">de.sulu.webplates.xyz</url>
+                        <!--<url language="en">en.sulu.webplates.xyz</url>-->
+                        <!--<url language="de">de.sulu.webplates.xyz</url>-->
                         <url>sulu.webplates.xyz/{localization}</url>
                     </urls>
                 </environment>
