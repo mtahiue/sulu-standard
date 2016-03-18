@@ -49,13 +49,3 @@
 /app/config/phpcr.yml
 /app/config/widgets.yml
 /web/admin
-
-# REQUIRED FOR DEMO ONLY, REMOVE IN PRODUCTION
-/app/Resources/webspaces/*
-!/app/Resources/webspaces/*.dist
-/app/Resources/pages/*
-!/app/Resources/pages/*.dist
-/app/Resources/snippets/*
-!/app/Resources/snippets/*.dist
-/app/Resources/fixtures/*
-!app/Resources/fixtures/.gitkeep
