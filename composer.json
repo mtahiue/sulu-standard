@@ -27,7 +27,7 @@
         "lexik/maintenance-bundle": "^2.0",
         "liip/monitor-bundle": "^2.3",
         "twig/extensions": "~1.0",
-        "sulu/sulu": "dev-develop",
+        "sulu/sulu": "1.2.*",
         "symfony-cmf/core-bundle": "1.2.*",
         "dantleech/phpcr-migrations-bundle": "0.1.*",
 
@@ -94,5 +94,7 @@
         "branch-alias": {
             "dev-master": "1.2-dev"
         }
-    }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
