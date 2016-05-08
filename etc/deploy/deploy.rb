@@ -1,7 +1,6 @@
-set :application, "webplates/sulu"
+set :application, "webplates_sulu"
 set :repo_url, "git@github.com:webplates/sulu-standard.git"
 set :branch, ENV["BRANCH"] || "master"
-
 
 # Symfony settings
 set :session_path, fetch(:var_path) + "/sessions"
@@ -48,6 +47,4 @@ set :ssh_options, forward_agent: true
 
 
 # Airbrussh settings
-Airbrussh.configure do |config|
-    config.log_file = "var/logs/capistrano.log"
-end
+set :format_options, log_file: "var/logs/capistrano.log"

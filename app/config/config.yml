@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: extras.yml }
     - { resource: sulu.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -65,24 +66,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-# Lexik Maintenance Configuration
-lexik_maintenance:
-    authorized:
-        ips: "%maintenance_ips%"
-    driver:
-        class: Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
-        options:
-            file_path: "%kernel.storage_dir%/var/cache/%sulu.context%/%kernel.environment%/maintenance_lock"
-
-# Liip Monitor Configuration
-liip_monitor:
-    checks:
-        security_advisory:
-            lock_file: '%kernel.root_dir%/../composer.lock'
-
-# Liip Theme Configuration
-liip_theme:
-    themes: ["default"]
-    active_theme: "default"
-    load_controllers: false

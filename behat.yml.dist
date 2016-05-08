@@ -1,0 +1,17 @@
+default:
+    suites:
+        app:
+            type: symfony_bundle
+            contexts:
+                - Client\Bundle\WebsiteBundle\Features\Context\FeatureContext
+                - Client\Bundle\WebsiteBundle\Features\Context\DatabaseAwareContext
+            bundle: ClientWebsiteBundle
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                path: app/AdminKernel.php
+                class: AdminKernel
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~

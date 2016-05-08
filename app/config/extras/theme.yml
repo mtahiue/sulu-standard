@@ -1,0 +1,5 @@
+# Liip Theme Configuration
+liip_theme:
+    themes: ["default"]
+    active_theme: "default"
+    load_controllers: false
