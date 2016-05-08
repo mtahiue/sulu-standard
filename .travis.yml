@@ -24,13 +24,17 @@ matrix:
           env: TEST_COMMAND="composer test-ci"
 
 before_install:
+    - mysql -e 'create database symfony;'
     - travis_retry composer self-update
 
 install:
     - travis_retry composer install --prefer-dist --no-interaction
 
 before_script:
-    - php bin/console doctrine:schema:update --force
+    - php bin/console sulu:build dev --destroy --no-interaction
 
 script:
     - $TEST_COMMAND
+
+services:
+    - mysql
