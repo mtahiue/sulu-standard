@@ -1,0 +1,12 @@
+#!/bin/bash
+
+php bin/console cache:clear
+
+php bin/console sulu:build dev --destroy --no-interaction
+
+php bin/console sulu:translate:import en
+php bin/console sulu:translate:import de
+php bin/console sulu:translate:import fr
+php bin/console sulu:translate:export en
+php bin/console sulu:translate:export de
+php bin/console sulu:translate:export fr
