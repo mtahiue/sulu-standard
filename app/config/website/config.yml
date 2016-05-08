@@ -1,23 +1,4 @@
 imports:
     - { resource: security.yml }
     - { resource: ../config.yml }
-
-# Twig Configuration
-twig:
-    exception_controller: sulu_website.exception.controller:showAction
-
-# Symfony CMF Configuration
-cmf_routing:
-    chain:
-        routers_by_id:
-            router.default: 100
-            cmf_routing.dynamic_router: 20
-    dynamic:
-        enabled: true
-        route_provider_service_id: sulu_website.provider.content
-
-# FOS REST Configuration
-# Workaround to make custom exceptions working
-fos_rest:
-    exception:
-        exception_controller: sulu_website.exception.controller:showAction
+    - { resource: sulu.yml }

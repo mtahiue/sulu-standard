@@ -72,7 +72,6 @@ abstract class AppKernel extends SuluKernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Fidry\PsyshBundle\PsyshBundle();
-            $bundles[] = new Hal\Bundle\PhpMetricsCollector\PhpMetricsCollectorBundle();
             $bundles[] = new Sulu\Bundle\TestBundle\SuluTestBundle();
         }
 
