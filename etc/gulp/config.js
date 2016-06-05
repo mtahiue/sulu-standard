@@ -1,13 +1,16 @@
 import * as environment from 'gulp-environments';
 
+const sourceDir = 'app/Resources/assets/default';
+const targetDir = 'web/assets/default';
+
 export const config = {
-    src: 'src/Client/Bundle/WebsiteBundle/Resources/assets/default',
-    dest: 'src/Client/Bundle/WebsiteBundle/Resources/public/default',
+    src: sourceDir,
+    dest: targetDir,
     favicons: {
-        src: '/img/symfony_logo.png',
+        src: sourceDir + '/img/logo.png',
         config: {
-            appName: 'Symfony',
-            appDescription: 'This is my application',
+            appName: 'Sulu',
+            appDescription: 'Sulu CMS',
             background: '#ffffff',
             path: '/',
             url: '/',
@@ -19,8 +22,10 @@ export const config = {
             html: 'app/Resources/views/favicons.html.twig'
         }
     },
+    images: sourceDir + '/img/**/*.{png,svg,jpg,gif}',
     fonts: 'bower_components/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}',
     styles: {
+        src: sourceDir + '/scss/style.scss',
         browsers: [
             'ie >= 10',
             'ie_mob >= 10',

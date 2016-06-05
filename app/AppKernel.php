@@ -85,12 +85,12 @@ abstract class AppKernel extends SuluKernel
 
     public function getCacheDir()
     {
-        return KERNEL_STORAGE_DIR.'/var/cache/'.$this->getContext().'/'.$this->environment;
+        return dirname(__DIR__).'/var/cache/'.$this->getContext().'/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return KERNEL_STORAGE_DIR.'/var/logs/'.$this->getContext();
+        return dirname(__DIR__).'/var/logs'.$this->getContext();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

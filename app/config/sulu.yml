@@ -87,7 +87,7 @@ sulu_core:
                     path: "%kernel.root_dir%/Resources/snippets"
                     type: "snippet"
                 sulu:
-                    path: "%kernel.storage_dir%/vendor/sulu/sulu/src/Sulu/Bundle/CoreBundle/Content/templates"
+                    path: "%kernel.root_dir%/../vendor/sulu/sulu/src/Sulu/Bundle/CoreBundle/Content/templates"
                     type: "page"
             type_map:
                 page: "\\Sulu\\Component\\Content\\Compat\\Structure\\PageBridge"
