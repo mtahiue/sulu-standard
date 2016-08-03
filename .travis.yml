@@ -16,7 +16,6 @@ php:
 env:
     global:
         - SYMFONY_ENV=test
-        - TEST_COMMAND="composer test"
 
 matrix:
     allow_failures:
@@ -24,7 +23,7 @@ matrix:
     fast_finish: true
     include:
         - php: 5.5
-          env: TEST_COMMAND="composer test-ci"
+          env: COVERAGE=true
 
 before_install:
     - . $HOME/.nvm/nvm.sh
@@ -34,16 +33,14 @@ before_install:
     - mysql -e 'create database symfony;'
 
 install:
-    - travis_retry composer install --prefer-dist --no-interaction
-    - npm install
-    - bower install
+    - make COMPOSEROPTS="--prefer-dist --no-interaction" deps
 
 before_script:
-    - bin/setup
-    - gulp build
+    - make setup
+    - make GULPOPTS="--env production" frontend
 
 script:
-    - $TEST_COMMAND
+    - make test
 
 services:
     - mysql

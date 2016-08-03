@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <webspace xmlns="http://schemas.sulu.io/webspace/webspace"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://schemas.sulu.io/webspace/webspace http://schemas.sulu.io/webspace/webspace-1.0.xsd">
+          xsi:schemaLocation="http://schemas.sulu.io/webspace/webspace http://schemas.sulu.io/webspace/webspace-1.1.xsd">
 
     <name>sulu.webplates.xyz</name>
     <key>sulu_webplates</key>
@@ -11,18 +11,18 @@
         <localization language="de"/>
     </localizations>
 
-    <theme>
-        <key>default</key>
-        <default-templates>
-            <default-template type="page">default</default-template>
-            <default-template type="homepage">overview</default-template>
-        </default-templates>
+    <theme>default</theme>
 
-        <error-templates>
-            <error-template default="true">ClientWebsiteBundle:views:error.html.twig</error-template>
-            <error-template code="404">ClientWebsiteBundle:views:error404.html.twig</error-template>
-        </error-templates>
-    </theme>
+    <default-templates>
+        <default-template type="page">default</default-template>
+        <default-template type="homepage">overview</default-template>
+    </default-templates>
+
+    <templates>
+        <template type="search">ClientWebsiteBundle:views:query.html.twig</template>
+        <template type="error">ClientWebsiteBundle:views:error.html.twig</template>
+        <template type="error-404">ClientWebsiteBundle:views:error404.html.twig</template>
+    </templates>
 
     <navigation>
         <contexts>
@@ -30,12 +30,6 @@
                 <meta>
                     <title lang="de">Hauptnavigation</title>
                     <title lang="en">Mainnavigation</title>
-                </meta>
-            </context>
-            <context key="footer">
-                <meta>
-                    <title lang="de">Footernavigation</title>
-                    <title lang="en">Footernavigation</title>
                 </meta>
             </context>
         </contexts>
@@ -69,4 +63,3 @@
         </portal>
     </portals>
 </webspace>
-

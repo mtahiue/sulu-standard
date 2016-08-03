@@ -30,9 +30,7 @@ abstract class AppKernel extends SuluKernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             // REST
-            new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             // Massive
             new Massive\Bundle\SearchBundle\MassiveSearchBundle(),
@@ -54,6 +52,9 @@ abstract class AppKernel extends SuluKernel
             new Sulu\Bundle\TranslateBundle\SuluTranslateBundle(),
             new Sulu\Bundle\DocumentManagerBundle\SuluDocumentManagerBundle(),
             new Sulu\Bundle\HashBundle\SuluHashBundle(),
+            new Sulu\Bundle\CustomUrlBundle\SuluCustomUrlBundle(),
+            new Sulu\Bundle\RouteBundle\SuluRouteBundle(),
+            new Sulu\Bundle\MarkupBundle\SuluMarkupBundle(),
             new DTL\Bundle\PhpcrMigrations\PhpcrMigrationsBundle(),
             new Dubture\FFmpegBundle\DubtureFFmpegBundle(),
 
@@ -61,6 +62,7 @@ abstract class AppKernel extends SuluKernel
             new Massive\Bundle\BuildBundle\MassiveBuildBundle(),
 
             // Website
+            new Sulu\Bundle\ThemeBundle\SuluThemeBundle(),
             new Liip\ThemeBundle\LiipThemeBundle(),
 
             new Client\Bundle\WebsiteBundle\ClientWebsiteBundle(),
@@ -85,16 +87,29 @@ abstract class AppKernel extends SuluKernel
 
     public function getCacheDir()
     {
+        if ('vagrant' === getenv('USER')) {
+            return '/opt/symfony/cache/'.$this->getContext().'/'.$this->getEnvironment();
+        }
+
         return dirname(__DIR__).'/var/cache/'.$this->getContext().'/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return dirname(__DIR__).'/var/logs'.$this->getContext();
+        if ('vagrant' === getenv('USER')) {
+            return '/opt/symfony/logs';
+        }
+
+        return dirname(__DIR__).'/var/logs'.'/'.$this->getContext();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/'.$this->getContext().'/config_'.$this->getEnvironment().'.yml');
+
+        // @see https://github.com/symfony/symfony/issues/7555
+        $loader->load(function(\Symfony\Component\DependencyInjection\Container $container) {
+            $container->getParameterBag()->add($this->getEnvParameters());
+        });
     }
 }

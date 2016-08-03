@@ -19,13 +19,16 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "twig/extensions": "^1.0",
         "symfony/monolog-bundle": "^2.4",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "lexik/maintenance-bundle": "^2.0",
         "liip/monitor-bundle": "^2.3",
-        "sulu/sulu": "^1.2",
+        "sulu/sulu": "dev-develop",
+        "sulu/theme-bundle": "1.0.*",
+        "sulu/document-manager": "@dev",
         "symfony-cmf/core-bundle": "1.2.*",
         "dantleech/phpcr-migrations-bundle": "0.1.*",
 
@@ -36,6 +39,7 @@
         "zendframework/zendsearch": "@dev",
 
         "massive/build-bundle": "0.2.*",
+        "massive/search-bundle": "@dev",
 
         "jackalope/jackalope-doctrine-dbal": "^1.2.5",
         "jackalope/jackalope-jackrabbit": "^1.2.0",
@@ -64,6 +68,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "Sulu\\Bundle\\TranslateBundle\\Composer\\TranslateScriptHandler::installTranslations",
             "Sulu\\Bundle\\MediaBundle\\Composer\\MediaScriptHandler::initBundle",
             "Massive\\Bundle\\SearchBundle\\Composer\\SearchScriptHandler::initBundle"
         ],
@@ -74,11 +79,10 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+            "Sulu\\Bundle\\TranslateBundle\\Composer\\TranslateScriptHandler::installTranslations",
             "Sulu\\Bundle\\MediaBundle\\Composer\\MediaScriptHandler::initBundle",
             "Massive\\Bundle\\SearchBundle\\Composer\\SearchScriptHandler::initBundle"
-        ],
-        "test": "vendor/bin/phpspec run && vendor/bin/phpunit && vendor/bin/behat",
-        "test-ci": "vendor/bin/phpspec run -c phpspec.ci.yml run && vendor/bin/phpunit --coverage-text --coverage-clover build/coverage.clover && vendor/bin/behat"
+        ]
     },
     "config": {
         "platform": {
@@ -91,12 +95,15 @@
         "symfony-var-dir": "var",
         "symfony-web-dir": "web",
         "symfony-tests-dir": "tests",
-        "symfony-assets-install": "relative",
+        "symfony-assets-install": "hard",
         "incenteev-parameters": [
             {"file": "app/config/parameters.yml"},
             {"file": "app/config/phpcr.yml"},
             {"file": "app/config/widgets.yml", "parameter-key": "sulu_admin"}
-        ]
+        ],
+        "branch-alias": {
+            "dev-master": "2.8-dev"
+        }
     },
     "prefer-stable": true,
     "minimum-stability": "dev"

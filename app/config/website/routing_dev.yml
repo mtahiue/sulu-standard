@@ -1,8 +1,12 @@
 _wdt:
+    defaults:
+        _requestAnalyzer: false
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
     prefix:   /_wdt
 
 _profiler:
+    defaults:
+        _requestAnalyzer: false
     resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
     prefix:   /_profiler
 
@@ -11,5 +15,4 @@ _main:
 
 _portal_errors:
     resource: "@SuluWebsiteBundle/Resources/config/routing_error.yml"
-    resource: routing_error.yml
     type: portal

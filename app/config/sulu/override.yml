@@ -1,0 +1,9 @@
+sulu_media:
+    storage:
+        local:
+            path: "%kernel.root_dir%/../var/uploads/media"
+
+massive_search:
+    adapters:
+        zend_lucene:
+            basepath: "%kernel.root_dir%/../var/search/zend_lucene/data"

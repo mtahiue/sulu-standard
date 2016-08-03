@@ -12,9 +12,5 @@ cmf_routing:
         enabled: true
         route_provider_service_id: sulu_website.provider.content
 
-# FOS REST Configuration
-# Remove after https://github.com/FriendsOfSymfony/FOSRestBundle/issues/1402 is fixed
-fos_rest:
-    exception:
-        enabled: false
-#        exception_controller: sulu_website.exception.controller:showAction
+sulu_document_manager:
+    default_session: live
