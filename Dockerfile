@@ -58,8 +58,10 @@ RUN set -xe \
         var/logs/* \
     && chmod -R 777 var/sessions/
 
-VOLUME ["/var/www/html/web", "/var/www/html/var/sessions", "/var/www/html/var/uploads"]
+VOLUME ["/var/www/html/web", "/var/www/html/var/sessions", "/var/www/html/var/media", "/var/www/html/var/search"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+ENV SYMFONY__SULU_MEDIA__FORMAT_CACHE__PATH %kernel.root_dir%/../var/media/cache

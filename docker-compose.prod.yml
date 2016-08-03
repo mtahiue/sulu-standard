@@ -20,6 +20,8 @@ services:
             - ./var/docker/prod/app/logs:/var/www/html/var/logs
             - ./var/docker/prod/app/sessions:/var/www/html/var/sessions
             - ./var/docker/prod/app/web:/var/www/html/web
+            - ./var/docker/prod/app/media:/var/www/html/var/media
+            - ./var/docker/prod/app/search:/var/www/html/var/search
         environment:
             SYMFONY_ENV: prod
             SYMFONY__DATABASE_HOST: db
