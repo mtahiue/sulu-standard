@@ -59,7 +59,4 @@ COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-# Production PHP configuration
-COPY etc/docker/prod/app/php.ini /usr/local/etc/php/php.ini
-
 ENV SYMFONY__SULU_MEDIA__FORMAT_CACHE__PATH %kernel.root_dir%/../var/uploads/media
