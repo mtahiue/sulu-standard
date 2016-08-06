@@ -12,11 +12,11 @@ ENV BOWER_VERSION=1.7.9 GULP_VERSION=1.2.2 NPM_CONFIG_LOGLEVEL=warn
 ENV COMPOSER_VERSION=1.1.0 COMPOSER_ALLOW_SUPERUSER=1
 ENV SYMFONY_ENV prod
 
-# Production PHP configuration
-COPY etc/docker/prod/app/php.ini /usr/local/etc/php/php.ini
+WORKDIR /app
 
 RUN set -xe \
     && npm install --silent -g bower@$BOWER_VERSION gulp-cli@$GULP_VERSION \
+    && echo "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     && composer global require --quiet "hirak/prestissimo:^0.3"
 
@@ -30,14 +30,7 @@ RUN bower --allow-root install
 COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-dev --no-interaction --quiet --no-autoloader --no-scripts
 
-COPY LICENSE .
-COPY bin/ bin/
-COPY etc/ etc/
-COPY app/ app/
-COPY src/ src/
-COPY var/ var/
-COPY web/ web/
-COPY .babelrc gulpfile.babel.js ./
+COPY . .
 
 # Build and cleanup
 RUN set -xe \
@@ -47,7 +40,8 @@ RUN set -xe \
     && bin/console assets:install \
     && mv web/ public/ \
     && bin/console cache:clear --no-warmup \
-    && rm -rf bower_components/ \
+    && rm -rf .babelrc \
+        bower_components/ \
         bower.json \
         etc/ \
         gulpfile.babel.js \
@@ -56,12 +50,16 @@ RUN set -xe \
         package.json \
         var/cache/* \
         var/logs/* \
-    && chmod -R 777 var/sessions/
+    && mkdir -p var/sessions/ var/uploads/ \
+    && chmod -R 777 var/sessions/ var/uploads/
 
-VOLUME ["/var/www/html/web", "/var/www/html/var/sessions", "/var/www/html/var/media", "/var/www/html/var/search"]
+VOLUME ["/app/web", "/app/var/sessions", "/app/var/uploads", "/app/var/media", "/app/var/search"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-ENV SYMFONY__SULU_MEDIA__FORMAT_CACHE__PATH %kernel.root_dir%/../var/media/cache
+# Production PHP configuration
+COPY etc/docker/prod/app/php.ini /usr/local/etc/php/php.ini
+
+ENV SYMFONY__SULU_MEDIA__FORMAT_CACHE__PATH %kernel.root_dir%/../var/uploads/media
