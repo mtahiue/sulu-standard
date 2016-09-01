@@ -1,0 +1,163 @@
+stages:
+    - dep
+    - test
+    - build
+    - deploy
+
+.template:runner: &runner
+
+.template:docker: &docker
+    <<: *runner
+    image: docker
+    before_script:
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    dependencies: []
+
+.template:deploy: &deploy
+    <<: *runner
+    stage: deploy
+    image: ruby:2.3
+    before_script:
+        - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+        - eval $(ssh-agent -s)
+        - mkdir -p ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+        - bundle
+    dependencies:
+        - frontend
+
+npm:
+    <<: *runner
+    stage: dep
+    image: node:6.3.1
+    script:
+        - npm install --silent
+    cache:
+        paths:
+            - node_modules/
+    artifacts:
+        paths:
+            - node_modules/
+
+bower:
+    <<: *runner
+    stage: dep
+    image: node:6.3.1
+    variables:
+        BOWER_VERSION: 1.7.9
+    script:
+        - npm install -g bower@$BOWER_VERSION --silent
+        - bower install --allow-root --silent
+    cache:
+        paths:
+            - bower_components/
+    artifacts:
+        paths:
+            - bower_components/
+
+composer:
+    <<: *runner
+    stage: dep
+    image: webplates/symfony-php:7.0
+    script:
+        - composer install --prefer-dist --no-autoloader --no-scripts --no-interaction --quiet
+    cache:
+        paths:
+            - vendor/
+    artifacts:
+        paths:
+            - vendor/
+
+test:
+    <<: *runner
+    stage: test
+    image: webplates/symfony-php:7.0
+    variables:
+        SYMFONY_DEPRECATIONS_HELPER: weak
+        SYMFONY_ENV: test
+    script:
+        - "curl -H \"Accept: text/plain\" https://security.sensiolabs.org/check_lock -F lock=@composer.lock"
+        - composer dump-autoload
+        - composer run-script post-install-cmd
+        - make SCHEMA=true setup
+        - make test
+    dependencies:
+        - composer
+    cache:
+        paths:
+            - var/cache/test/test.db
+
+frontend:
+    <<: *runner
+    stage: build
+    image: node:6.3.1
+    variables:
+        GULP_VERSION: 1.2.2
+    script:
+        - npm install -g gulp-cli@$GULP_VERSION --silent
+        - make GULPOPTS="--env production" frontend
+    dependencies:
+        - npm
+        - bower
+    artifacts:
+        paths:
+            - app/Resources/views/favicons.html.twig
+            - web/assets
+            - web/*.png
+            - web/browserconfig.xml
+            - web/favicon.ico
+            - web/manifest.webapp
+            - web/*.json
+
+container:
+    <<: *docker
+    stage: build
+    script:
+        - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME .
+        - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+
+docker:
+    <<: *docker
+    stage: deploy
+    script:
+        - docker tag $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME $CI_REGISTRY_IMAGE:latest
+        - docker push $CI_REGISTRY_IMAGE:latest
+    only:
+        - master
+
+dev:
+    <<: *deploy
+    variables:
+        BRANCH: "$CI_BUILD_REF_NAME"
+    environment: dev
+    script:
+        - ssh-add <(echo "$DEV_DEPLOY_PRIVATE_KEY")
+        - bundle exec cap dev deploy
+    only:
+        - master
+
+staging:
+    <<: *deploy
+    variables:
+        BRANCH: "$CI_BUILD_TAG"
+    environment: staging
+    script:
+        - ssh-add <(echo "$STAGING_DEPLOY_PRIVATE_KEY")
+        - bundle exec cap staging deploy
+    only:
+        - /^v\d+\.\d+\.\d+-(rc|dev).*$/
+    except:
+        - branches
+
+production:
+    <<: *deploy
+    environment: production
+    variables:
+        BRANCH: "$CI_BUILD_TAG"
+    script:
+        - ssh-add <(echo "$PROD_DEPLOY_PRIVATE_KEY")
+        - bundle exec cap production deploy
+    only:
+        - /^v\d+\.\d+\.\d+(-(hotfix).*)?$/
+    except:
+        - branches

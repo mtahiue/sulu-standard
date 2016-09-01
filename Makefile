@@ -12,15 +12,16 @@ BOWER:=$(shell if which bower > /dev/null 2>&1; then which bower; fi)
 GULPOPTS=
 
 help:
-	@echo 'Makefile for a Symfony application               '
-	@echo '                                                 '
-	@echo 'Usage:                                           '
-	@echo '    make clear  clear the cache                  '
-	@echo '    make deps   install project dependencies     '
-	@echo '    make setup  setup project for development    '
-	@echo '    make test   execute test suite               '
-	@echo '                set COVERAGE=true to run coverage'
-	@echo '                                                 '
+	@echo 'Makefile for a Symfony application                  '
+	@echo '                                                    '
+	@echo 'Usage:                                              '
+	@echo '    make clear     clear the cache                  '
+	@echo '    make deps      install project dependencies     '
+	@echo '    make setup     setup project for development    '
+	@echo '    make frontend  execute frontend build           '
+	@echo '    make test      execute test suite               '
+	@echo '                   set COVERAGE=true to run coverage'
+	@echo '                                                    '
 
 clear:
 	$(CONSOLECMD) cache:clear
@@ -36,19 +37,16 @@ ifdef BOWER
 	$(BOWER) install
 endif
 
-setup:
+setup: clear
 	$(CONSOLECMD) sulu:build dev --destroy --no-interaction
-	$(CONSOLECMD) sulu:translate:export en
-	$(CONSOLECMD) sulu:translate:export de
-	$(CONSOLECMD) sulu:translate:export fr
-
 
 frontend:
 	gulp build $(GULPOPTS)
 
 test:
+	$(CONSOLECMD) lint:yaml -v --ansi app
 ifeq ($(COVERAGE), true)
-	vendor/bin/phpspec run -c phpspec.ci.yml run
+	vendor/bin/phpspec run -c phpspec.ci.yml
 	vendor/bin/phpunit --coverage-text --coverage-clover build/coverage.clover
 else
 	vendor/bin/phpspec run

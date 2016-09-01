@@ -2,23 +2,17 @@ version: '2'
 
 services:
     db:
-        image: mysql:latest
+        extends:
+            file: etc/docker/common/db/docker-compose.yml
+            service: db
         volumes:
             - ./var/docker/prod/mysql:/var/lib/mysql
-        environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-            MYSQL_ROOT_PASSWORD: ''
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: symfony
-            MYSQL_PASSWORD: symfony
 
     app:
         build: .
         links:
             - db
         volumes:
-            - ./var/docker/prod/app/logs:/app/var/logs
-            - ./var/docker/prod/app/sessions:/app/var/sessions
             - ./var/docker/prod/app/uploads:/app/var/uploads
             - ./var/docker/prod/app/web:/app/web
             - ./var/docker/prod/app/media:/app/var/media
@@ -34,6 +28,5 @@ services:
         links:
             - app
         volumes:
-            - ./var/docker/prod/nginx:/var/log/nginx
             - ./var/docker/prod/app/uploads:/app/var/uploads
             - ./var/docker/prod/app/web:/app/web

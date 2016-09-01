@@ -1,7 +1,7 @@
 # General
 .DS_Store
-/.env*
-!.env.example
+/*.override.yml
+!*.override.yml.example
 /.idea/
 /build/
 
@@ -13,6 +13,7 @@
 
 # Symfony
 /app/config/parameters.yml
+/app/config/parameters.test.yml
 /phpunit.xml
 /var/*
 !/var/cache

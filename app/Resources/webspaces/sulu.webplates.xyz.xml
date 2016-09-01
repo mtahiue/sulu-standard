@@ -19,7 +19,7 @@
     </default-templates>
 
     <templates>
-        <template type="search">ClientWebsiteBundle:views:query.html.twig</template>
+        <template type="search">ClientWebsiteBundle:views:search.html.twig</template>
         <template type="error">ClientWebsiteBundle:views:error.html.twig</template>
         <template type="error-404">ClientWebsiteBundle:views:error404.html.twig</template>
     </templates>
@@ -39,9 +39,6 @@
         <portal>
             <name>sulu.webplates.xyz</name>
             <key>sulu_webplates</key>
-            <resource-locator>
-                <strategy>tree</strategy>
-            </resource-locator>
 
             <environments>
                 <environment type="prod">
