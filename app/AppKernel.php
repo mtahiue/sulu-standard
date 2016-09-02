@@ -60,12 +60,6 @@ abstract class AppKernel extends SuluKernel
 
             // Tools
             new Massive\Bundle\BuildBundle\MassiveBuildBundle(),
-
-            // Website
-            new Sulu\Bundle\ThemeBundle\SuluThemeBundle(),
-            new Liip\ThemeBundle\LiipThemeBundle(),
-
-            new Client\Bundle\WebsiteBundle\ClientWebsiteBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
@@ -100,7 +94,7 @@ abstract class AppKernel extends SuluKernel
             return '/opt/symfony/logs';
         }
 
-        return dirname(__DIR__).'/var/logs'.'/'.$this->getContext();
+        return dirname(__DIR__).'/var/logs/'.$this->getContext();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
@@ -111,5 +105,15 @@ abstract class AppKernel extends SuluKernel
         $loader->load(function(\Symfony\Component\DependencyInjection\Container $container) {
             $container->getParameterBag()->add($this->getEnvParameters());
         });
+    }
+
+    protected function getKernelParameters()
+    {
+        return array_merge(
+            parent::getKernelParameters(),
+            [
+                'kernel.var_dir' => dirname(__DIR__).'/var'
+            ]
+        );
     }
 }

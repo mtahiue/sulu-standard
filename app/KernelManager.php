@@ -1,5 +1,6 @@
 <?php
 
+use Sulu\Component\HttpKernel\SuluKernel;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -9,8 +10,8 @@ final class KernelManager
      * @var array
      */
     private $kernels = [
-        AdminKernel::CONTEXT => AdminKernel::class,
-        WebsiteKernel::CONTEXT => WebsiteKernel::class,
+        SuluKernel::CONTEXT_ADMIN => AdminKernel::class,
+        SuluKernel::CONTEXT_WEBSITE => WebsiteKernel::class,
     ];
 
     /**
@@ -44,7 +45,7 @@ final class KernelManager
      */
     public function createConsoleKernel(InputInterface $input)
     {
-        $context = $input->getParameterOption(['--context', '-c'], getenv('SULU_CONTEXT') ?: AdminKernel::CONTEXT);
+        $context = $input->getParameterOption(['--context', '-c'], getenv('SULU_CONTEXT') ?: SuluKernel::CONTEXT_ADMIN);
 
         return $this->createKernelFromContext($context);
     }
@@ -62,7 +63,7 @@ final class KernelManager
     {
         $context = $request->server->get(
             'SULU_CONTEXT',
-            0 === strpos($request->getPathInfo(), '/admin') ? AdminKernel::CONTEXT : WebsiteKernel::CONTEXT
+            0 === strpos($request->getPathInfo(), '/admin') ? SuluKernel::CONTEXT_ADMIN : SuluKernel::CONTEXT_WEBSITE
         );
 
         return $this->createKernelFromContext($context);
@@ -80,10 +81,10 @@ final class KernelManager
         if (isset($_SERVER['SULU_CONTEXT'])) {
             $context = $_SERVER['SULU_CONTEXT'];
         } else {
-            $context = WebsiteKernel::CONTEXT;
+            $context = SuluKernel::CONTEXT_WEBSITE;
 
             if (0 === strpos($_SERVER['REQUEST_URI'], '/admin')) {
-                $context = AdminKernel::CONTEXT;
+                $context = SuluKernel::CONTEXT_ADMIN;
             }
         }
 

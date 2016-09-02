@@ -2,8 +2,6 @@
 
 class AdminKernel extends AppKernel
 {
-    const CONTEXT = self::CONTEXT_ADMIN;
-
     /**
      * {@inheritdoc}
      */
@@ -16,7 +14,7 @@ class AdminKernel extends AppKernel
     public function __construct($environment, $debug)
     {
         parent::__construct($environment, $debug);
-        $this->setContext(self::CONTEXT);
+        $this->setContext(self::CONTEXT_ADMIN);
     }
 
     public function registerBundles()

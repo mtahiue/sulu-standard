@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+use Sulu\Component\HttpKernel\SuluKernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -28,7 +29,7 @@ if ($debug) {
 
 $kernelManager = new KernelManager($env, $debug);
 
-$contextOption = new InputOption('context', 'c', InputOption::VALUE_REQUIRED, 'Sulu context option (admin/website)', AdminKernel::CONTEXT);
+$contextOption = new InputOption('context', 'c', InputOption::VALUE_REQUIRED, 'Sulu context option (admin/website)', SuluKernel::CONTEXT_ADMIN);
 
 $kernel = $kernelManager->createConsoleKernel($input);
 $application = new Application($kernel);

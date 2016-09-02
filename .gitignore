@@ -58,6 +58,4 @@
 /phpspec.yml
 
 # Sulu
-/app/config/phpcr.yml
-/app/config/widgets.yml
 /web/admin

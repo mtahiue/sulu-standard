@@ -2,7 +2,7 @@
 twig:
     exception_controller: sulu_website.exception.controller:showAction
 
-# Symfony CMF Configuration
+# SymfonyCMF Configuration
 cmf_routing:
     chain:
         routers_by_id:
@@ -12,5 +12,6 @@ cmf_routing:
         enabled: true
         route_provider_service_id: sulu_website.provider.content
 
+# SuluDocumentManager Configuration
 sulu_document_manager:
     default_session: live

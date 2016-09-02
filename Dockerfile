@@ -40,12 +40,10 @@ RUN set -xe \
         var/cache/* \
         var/logs/* \
     && mkdir -p var/sessions/ var/uploads/ \
-    && chown -R www-data. var/cache/ var/logs/ var/sessions/ var/uploads/
+    && chown -R www-data. var/cache/ var/logs/ var/sessions/ var/uploads/ var/indexes/
 
-VOLUME ["/app/web", "/app/var/sessions", "/app/var/uploads", "/app/var/media", "/app/var/search"]
+VOLUME ["/app/web", "/app/var/sessions", "/app/var/uploads", "/app/var/indexes"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-ENV SYMFONY__SULU_MEDIA__FORMAT_CACHE__PATH %kernel.root_dir%/../var/uploads/media

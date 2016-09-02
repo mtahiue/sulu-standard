@@ -7,10 +7,6 @@ bin/console cache:clear -c website
 chown -R www-data. var/cache/
 cp -r public/* web/
 
-# Make sure we have these directories, even in a volume
-mkdir -p var/media/storage/ var/media/cache/
-chown -R www-data. var/media/
-
 case "$1" in
     ""|"php-fpm")
         # Logging to stdout produces weird errors

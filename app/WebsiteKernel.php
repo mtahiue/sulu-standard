@@ -2,8 +2,6 @@
 
 class WebsiteKernel extends AppKernel
 {
-    const CONTEXT = self::CONTEXT_WEBSITE;
-
     /**
      * {@inheritdoc}
      */
@@ -16,7 +14,7 @@ class WebsiteKernel extends AppKernel
     public function __construct($environment, $debug)
     {
         parent::__construct($environment, $debug);
-        $this->setContext(self::CONTEXT);
+        $this->setContext(self::CONTEXT_WEBSITE);
     }
 
     public function registerBundles()

@@ -1,4 +1,3 @@
 imports:
     - { resource: extras/maintenance.yml }
     - { resource: extras/monitor.yml }
-    - { resource: extras/theme.yml }

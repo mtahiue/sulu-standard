@@ -8,20 +8,17 @@
 
     <localizations>
         <localization language="en" default="true"/>
-        <localization language="de"/>
     </localizations>
-
-    <theme>default</theme>
 
     <default-templates>
         <default-template type="page">default</default-template>
-        <default-template type="homepage">overview</default-template>
+        <default-template type="home">homepage</default-template>
     </default-templates>
 
     <templates>
-        <template type="search">ClientWebsiteBundle:views:search.html.twig</template>
-        <template type="error">ClientWebsiteBundle:views:error.html.twig</template>
-        <template type="error-404">ClientWebsiteBundle:views:error404.html.twig</template>
+        <template type="search">search.html.twig</template>
+        <template type="error">error/default.html.twig</template>
+        <template type="error-404">error/404.html.twig</template>
     </templates>
 
     <navigation>
@@ -43,17 +40,17 @@
             <environments>
                 <environment type="prod">
                     <urls>
-                        <url>{host}/{localization}</url>
+                        <url language="en">{host}</url>
                     </urls>
                 </environment>
                 <environment type="stage">
                     <urls>
-                        <url>{host}/{localization}</url>
+                        <url language="en">{host}</url>
                     </urls>
                 </environment>
                 <environment type="dev">
                     <urls>
-                        <url>{host}/{localization}</url>
+                        <url language="en">{host}</url>
                     </urls>
                 </environment>
             </environments>
