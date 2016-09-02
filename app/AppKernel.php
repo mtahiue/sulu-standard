@@ -60,6 +60,8 @@ abstract class AppKernel extends SuluKernel
 
             // Tools
             new Massive\Bundle\BuildBundle\MassiveBuildBundle(),
+
+            new AppBundle\AppBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

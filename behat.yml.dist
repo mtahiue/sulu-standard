@@ -3,9 +3,9 @@ default:
         app:
             type: symfony_bundle
             contexts:
-                - Client\Bundle\WebsiteBundle\Features\Context\FeatureContext
-                - Client\Bundle\WebsiteBundle\Features\Context\DatabaseAwareContext
-            bundle: ClientWebsiteBundle
+                - AppBundle\Features\Context\FeatureContext
+                - AppBundle\Features\Context\DatabaseAwareContext
+            bundle: AppBundle
     extensions:
         Behat\Symfony2Extension:
             kernel:
