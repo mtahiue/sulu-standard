@@ -10,6 +10,9 @@ services:
 
     app:
         build: .
+        environment:
+            SYMFONY_ENV: prod
+            SYMFONY__DATABASE_HOST: db
         links:
             - db
         volumes:
@@ -17,9 +20,6 @@ services:
             - ./var/docker/prod/app/web:/app/web
             - ./var/docker/prod/app/media:/app/var/media
             - ./var/docker/prod/app/search:/app/var/search
-        environment:
-            SYMFONY_ENV: prod
-            SYMFONY__DATABASE_HOST: db
 
     web:
         image: webplates/symfony-nginx
