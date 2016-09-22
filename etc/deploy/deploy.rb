@@ -16,12 +16,12 @@ set :banner_options, {
 
 
 # Shared content
-set :linked_files, [fetch(:app_config_path) + "/parameters.yml", fetch(:app_config_path) + "/phpcr.yml", fetch(:app_config_path) + "/widgets.yml"]
+set :linked_files, [fetch(:app_config_path) + "/parameters.yml"]
 set :linked_dirs, [
     fetch(:log_path),
     fetch(:session_path),
     fetch(:web_path) + "/uploads",
-    fetch(:var_path) + "/search_data"
+    fetch(:var_path) + "/indexes"
 ]
 set :copy_files, [
     "vendor/"
