@@ -1,7 +1,7 @@
 import * as environment from 'gulp-environments';
 
-const sourceDir = 'app/Resources/assets/default';
-const targetDir = 'web/assets/default';
+const sourceDir = 'app/Resources/assets';
+const targetDir = 'web/assets';
 
 export const config = {
     src: sourceDir,
