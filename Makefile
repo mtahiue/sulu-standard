@@ -25,6 +25,7 @@ help:
 
 clear:
 	$(CONSOLECMD) cache:clear
+	$(CONSOLECMD) cache:clear -c website
 
 deps:
 ifdef COMPOSER
