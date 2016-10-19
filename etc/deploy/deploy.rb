@@ -21,7 +21,8 @@ set :linked_dirs, [
     fetch(:log_path),
     fetch(:session_path),
     fetch(:web_path) + "/uploads",
-    fetch(:var_path) + "/indexes"
+    fetch(:var_path) + "/indexes",
+    fetch(:var_path) + "/uploads"
 ]
 set :copy_files, [
     "vendor/"
